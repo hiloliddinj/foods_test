@@ -4,10 +4,7 @@ import 'package:foods_test/app/modules/home_page/views/home_page_view.dart';
 import 'package:get/get.dart';
 
 class SplashPageController extends GetxController {
-  //TODO: Implement SplashPageController
-
   Timer? _timer;
-
   final count = 5.obs;
 
   @override
@@ -29,7 +26,7 @@ class SplashPageController extends GetxController {
       (Timer timer) {
         if (count.value == 0) {
           timer.cancel();
-          Get.to(() => const HomePageView());
+          Get.off(() => const HomePageView());
         } else {
           count.value--;
         }

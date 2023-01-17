@@ -4,7 +4,6 @@ import 'package:foods_test/app/core/helpers/text_style_helper.dart';
 import 'package:foods_test/app/core/helpers/ui_helper.dart';
 
 import 'package:get/get.dart';
-
 import '../controllers/splash_page_controller.dart';
 
 class SplashPageView extends GetView<SplashPageController> {
