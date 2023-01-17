@@ -1,23 +1,39 @@
+import 'dart:async';
+
+import 'package:foods_test/app/modules/home_page/views/home_page_view.dart';
 import 'package:get/get.dart';
 
 class SplashPageController extends GetxController {
   //TODO: Implement SplashPageController
 
-  final count = 0.obs;
+  Timer? _timer;
+
+  final count = 5.obs;
+
   @override
   void onInit() {
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
+    _startTimer();
   }
 
   @override
   void onClose() {
+    _timer?.cancel();
     super.onClose();
   }
 
-  void increment() => count.value++;
+  void _startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (count.value == 0) {
+          timer.cancel();
+          Get.to(() => const HomePageView());
+        } else {
+          count.value--;
+        }
+      },
+    );
+  }
 }

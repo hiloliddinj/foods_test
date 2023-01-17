@@ -19,3 +19,9 @@ dev_dependencies:
 flutter: 
   uses-material-design: true
 
+fonts:
+  - family: Overpass
+    fonts:
+      - asset: fonts/Overpass-Regular.ttf
+
+
