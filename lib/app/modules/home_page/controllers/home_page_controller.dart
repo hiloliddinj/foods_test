@@ -1,45 +1,28 @@
+import 'package:foods_test/app/data/models/food_model/food_model.dart';
 import 'package:get/get.dart';
 
+import '../../../core/repositories/api_repository.dart';
 import '../views/food_button_view.dart';
 
 class HomePageController extends GetxController {
-  var myList = <FoodButtonView>[
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-    FoodButtonView(),
-  ].obs;
 
-  final count = 0.obs;
+  var myList = <FoodButtonView>[].obs;
+
   @override
   void onInit() {
-    print('GetxController onInit');
     super.onInit();
+    _getFood();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  void _getFood() async {
+    List<FoodModel>? foodModelList = await ApiRepository().getFoods();
+    print('Response: ${foodModelList?.length}');
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+    var foodButtonViewList = <FoodButtonView>[];
 
-  void increment() => count.value++;
+    for (FoodModel foodModel in foodModelList ?? []) {
+      foodButtonViewList.add(FoodButtonView(foodModel: foodModel));
+    }
+    myList.addAll(foodButtonViewList);
+  }
 }
