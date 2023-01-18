@@ -19,9 +19,9 @@ class DetailsPageView extends GetView<DetailsPageController> {
         backgroundColor: ColorConst.white,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
+            onPressed: () {
+              Get.back();
+            },
             icon: const Padding(
               padding: EdgeInsets.only(left: 20),
               child: Icon(
@@ -35,19 +35,42 @@ class DetailsPageView extends GetView<DetailsPageController> {
         child: Container(
           height: double.infinity,
           color: ColorConst.white,
-          padding: const EdgeInsets.all(12),
-          child: Column(
+          padding: const EdgeInsets.all(20),
+          child: Stack(
             children: [
-              _buildTitle(),
-              _buildChart(),
-              _buildSubTitle(),
-              UiHelper.h2(),
-              _buildTile(title: 'Calories', value: '242 kcal'),
-              _buildTile(color: ColorConst.blue, title: StringConst.protein, value: '12 g'),
-              _buildTile(color: ColorConst.orange, title: StringConst.fat, value: '17.4 g'),
-              _buildTile(color: ColorConst.purple, title: StringConst.totalCarbs, value: '3g g'),
-              _buildTile(title: 'Sugar', value: '8 g', valueColor: ColorConst.grey2),
-              _buildTile(title: 'Glycemic Load', value: '14 g', valueColor: ColorConst.grey2),
+              Column(
+                children: [
+                  _buildTitle(),
+                  _buildChart(),
+                  _buildSubTitle(),
+                  UiHelper.h2(),
+                  _buildTile(title: 'Calories', value: '242 kcal'),
+                  _buildTile(
+                      color: ColorConst.blue,
+                      title: StringConst.protein,
+                      value: '12 g'),
+                  _buildTile(
+                      color: ColorConst.orange,
+                      title: StringConst.fat,
+                      value: '17.4 g'),
+                  _buildTile(
+                      color: ColorConst.purple,
+                      title: StringConst.totalCarbs,
+                      value: '3g g'),
+                  _buildTile(
+                      title: 'Sugar',
+                      value: '8 g',
+                      valueColor: ColorConst.grey2),
+                  _buildTile(
+                      title: 'Glycemic Load',
+                      value: '14',
+                      valueColor: ColorConst.grey2),
+                ],
+              ),
+              _createButton(
+                onPressed: () {},
+                title: 'Save to favorites',
+              ),
             ],
           ),
         ),
@@ -60,16 +83,13 @@ class DetailsPageView extends GetView<DetailsPageController> {
       alignment: Alignment.centerLeft,
       child: Text(
         'Mozzarella cheese mini',
-        style: TextStyleHelper.overpass(
-          fontSize: 25,
-          fontWeight: FontWeight.bold
-        ),
+        style:
+            TextStyleHelper.overpass(fontSize: 25, fontWeight: FontWeight.bold),
       ),
     );
   }
 
   Widget _buildChart() {
-
     List<ChartLayer> layers() {
       return [
         ChartGroupPieLayer(
@@ -138,7 +158,7 @@ class DetailsPageView extends GetView<DetailsPageController> {
       child: Text(
         'Nutrition facts',
         style: TextStyleHelper.overpass(
-            fontSize: 23,
+          fontSize: 23,
         ),
       ),
     );
@@ -162,10 +182,10 @@ class DetailsPageView extends GetView<DetailsPageController> {
       ),
     );
   }
-  
+
   Text _buildText({required String text, Color? color}) {
     return Text(
-        text,
+      text,
       style: TextStyleHelper.overpass(
         fontSize: 20,
         color: color ?? ColorConst.black,
@@ -185,5 +205,35 @@ class DetailsPageView extends GetView<DetailsPageController> {
     );
   }
 
-  
+  Widget _createButton({
+    required void Function()? onPressed,
+    required String title,
+  }) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0))),
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(ColorConst.green)),
+          child: SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: Center(
+              child: Text(
+                title,
+                style: TextStyleHelper.overpass(
+                    fontSize: 20, color: ColorConst.white),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
