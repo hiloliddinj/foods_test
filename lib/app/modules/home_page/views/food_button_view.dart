@@ -41,7 +41,7 @@ class FoodButtonView extends GetView {
             ),
             const Icon(
               Icons.favorite,
-              color: ColorConst.purple,
+              color: ColorConst.blue,
               size: 28,
             )
           ],
