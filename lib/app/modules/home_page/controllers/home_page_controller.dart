@@ -11,7 +11,9 @@ class HomePageController extends GetxController {
   RxList<FoodButtonView> favoriteFoodButtonViewList = <FoodButtonView>[].obs;
 
   List<FoodModel> allFoodModelList = <FoodModel>[];
-  RxList<FoodModel> favoriteFoodModelList = <FoodModel>[].obs;
+  List<FoodModel> favoriteFoodModelList = <FoodModel>[];
+
+  RxBool isHome = true.obs;
 
   @override
   void onInit() {
@@ -23,6 +25,10 @@ class HomePageController extends GetxController {
   Future<void> _getFood() async {
     List<FoodModel>? foodModelList = await ApiRepository().getFoods();
     print('Response: ${foodModelList?.length}');
+
+    if (foodModelList != null) {
+      allFoodModelList = foodModelList.toList();
+    }
 
     var foodButtonViewList = <FoodButtonView>[];
 
@@ -39,9 +45,45 @@ class HomePageController extends GetxController {
     allFoodButtonViewList.addAll(foodButtonViewList);
   }
 
-  void _getFavoriteFoods() {
-    List<FoodModel> favorites = StorageHelper.getFavoriteFoodModelsList();
-    favoriteFoodModelList.addAll(favorites);
+  Future<void> _getFavoriteFoods() async {
+    List<FoodModel> favorites = await StorageHelper.getFavoriteFoodModelsList();
+
+    favoriteFoodModelList = favorites.toList();
+
+    var favoriteFoodButtonViewList = <FoodButtonView>[];
+
+    for (FoodModel foodModel in favoriteFoodModelList) {
+      favoriteFoodButtonViewList.add(FoodButtonView(foodModel: foodModel, isFavorite: true));
+    }
+    this.favoriteFoodButtonViewList.value = favoriteFoodButtonViewList.toList();
+  }
+
+  void updateIsHome({required bool isHome}) {
+    this.isHome.value = isHome;
+  }
+
+  void updateHomePage({required bool isFavorite, required FoodModel foodModel}) {
+
+    for(int i=0; i< allFoodModelList.length; i++) {
+      if (allFoodModelList[i] == foodModel) {
+        allFoodButtonViewList.removeAt(i);
+        allFoodButtonViewList.insert(i, FoodButtonView(foodModel: foodModel, isFavorite: isFavorite));
+        break;
+      }
+    }
+
+    if (isFavorite) {
+      favoriteFoodModelList.add(foodModel);
+      favoriteFoodButtonViewList.add(FoodButtonView(foodModel: foodModel, isFavorite: isFavorite));
+    } else {
+      for(int i=0; i< favoriteFoodModelList.length; i++) {
+        if (favoriteFoodModelList[i] == foodModel) {
+          favoriteFoodModelList.removeAt(i);
+          favoriteFoodButtonViewList.removeAt(i);
+          break;
+        }
+      }
+    }
   }
 
 }

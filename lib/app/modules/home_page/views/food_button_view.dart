@@ -22,7 +22,7 @@ class FoodButtonView extends GetView {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed(Routes.DETAILS_PAGE, arguments: foodModel);
+        Get.toNamed(Routes.DETAILS_PAGE, arguments: [foodModel, isFavorite]);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -52,13 +52,13 @@ class FoodButtonView extends GetView {
                 ],
               ),
             ),
-            const Expanded(
+            Expanded(
               flex: 1,
-              child: Icon(
+              child: isFavorite ? const Icon(
                 Icons.favorite,
                 color: ColorConst.blue,
                 size: 28,
-              ),
+              ) : const SizedBox(),
             )
           ],
         ),

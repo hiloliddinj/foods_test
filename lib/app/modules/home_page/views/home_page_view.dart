@@ -28,7 +28,7 @@ class HomePageView extends GetView<HomePageController> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _buildButtons(isHome: true),
+                Obx(() => _buildButtons(isHome: controller.isHome.value)),
                 UiHelper.h1(),
                 _buildFoodList(height: listViewHeight),
               ],
@@ -45,14 +45,14 @@ class HomePageView extends GetView<HomePageController> {
       children: [
         _createButton(
             onPressed: () {
-              print(StringConst.home);
+              controller.updateIsHome(isHome: true);
             },
             title: StringConst.home,
             isActive: isHome),
         UiHelper.w2(),
         _createButton(
             onPressed: () {
-              print(StringConst.favourites);
+              controller.updateIsHome(isHome: false);
             },
             title: StringConst.favourites,
             isActive: !isHome),
@@ -69,8 +69,7 @@ class HomePageView extends GetView<HomePageController> {
       onPressed: onPressed,
       style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18))),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
           backgroundColor: MaterialStateProperty.all<Color>(
               isActive ? ColorConst.green : ColorConst.grey)),
       child: SizedBox(
@@ -92,9 +91,13 @@ class HomePageView extends GetView<HomePageController> {
       child: Obx(() => ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: controller.allFoodButtonViewList.length,
+            itemCount: controller.isHome.value
+                ? controller.allFoodButtonViewList.length
+                : controller.favoriteFoodButtonViewList.length,
             itemBuilder: (BuildContext context, int index) {
-              return controller.allFoodButtonViewList[index];
+              return controller.isHome.value
+                  ? controller.allFoodButtonViewList[index]
+                  : controller.favoriteFoodButtonViewList[index];
             },
           )),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foods_test/app/aspect/constants/string_const.dart';
+import 'package:foods_test/app/core/helpers/storage_helper.dart';
 import 'package:foods_test/app/core/helpers/text_style_helper.dart';
 import 'package:foods_test/app/core/helpers/ui_helper.dart';
 import 'package:foods_test/app/data/models/food_model/food_model.dart';
@@ -15,8 +16,11 @@ class DetailsPageView extends GetView<DetailsPageController> {
 
   @override
   Widget build(BuildContext context) {
+    FoodModel foodModel = Get.arguments[0];
+    bool isFavorite = Get.arguments[1];
 
-    FoodModel foodModel = Get.arguments;
+    controller.updateIsFavorite(isFavorite: isFavorite);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConst.white,
@@ -45,33 +49,53 @@ class DetailsPageView extends GetView<DetailsPageController> {
                   _buildChart(foodModel: foodModel),
                   _buildSubTitle(),
                   UiHelper.h2(),
-                  _buildTile(title: StringConst.calories, value: '${foodModel.clr?.toStringAsFixed(1)} ${StringConst.kcal}'),
+                  _buildTile(
+                      title: StringConst.calories,
+                      value:
+                          '${foodModel.clr?.toStringAsFixed(1)} ${StringConst.kcal}'),
                   _buildTile(
                       color: ColorConst.blue,
                       title: StringConst.protein,
-                      value: '${foodModel.prtn?.toStringAsFixed(1)} ${StringConst.g}'),
+                      value:
+                          '${foodModel.prtn?.toStringAsFixed(1)} ${StringConst.g}'),
                   _buildTile(
                       color: ColorConst.orange,
                       title: StringConst.fat,
-                      value: '${foodModel.ft?.toStringAsFixed(1)} ${StringConst.g}'),
+                      value:
+                          '${foodModel.ft?.toStringAsFixed(1)} ${StringConst.g}'),
                   _buildTile(
                       color: ColorConst.purple,
                       title: StringConst.totalCarbs,
-                      value: '${foodModel.tcrb?.toStringAsFixed(1)} ${StringConst.g}'),
+                      value:
+                          '${foodModel.tcrb?.toStringAsFixed(1)} ${StringConst.g}'),
                   _buildTile(
                       title: StringConst.sugar,
-                      value: '${foodModel.sgr?.toStringAsFixed(1)} ${StringConst.g}',
+                      value:
+                          '${foodModel.sgr?.toStringAsFixed(1)} ${StringConst.g}',
                       valueColor: ColorConst.grey2),
                   _buildTile(
                       title: StringConst.glycemicLoad,
-                      value: '${foodModel.gl?.toStringAsFixed(1)} ${StringConst.g}',
+                      value:
+                          '${foodModel.gl?.toStringAsFixed(1)} ${StringConst.g}',
                       valueColor: ColorConst.grey2),
                 ],
               ),
-              _createButton(
-                onPressed: () {},
-                title: StringConst.saveToFavorites,
-              ),
+              Obx(() => _createButton(
+                    onPressed: () {
+                      if (controller.isFavorite.value) {
+                        StorageHelper.deleteFavorite(foodModel: foodModel);
+                        controller.updateIsFavorite(isFavorite: false, foodModel: foodModel);
+                        //TODO: Update Home Screen
+                      } else {
+                        StorageHelper.saveFavorite(foodModel: foodModel);
+                        controller.updateIsFavorite(isFavorite: true, foodModel: foodModel);
+                        //TODO: Update Home Screen
+                      }
+                    },
+                    title: controller.isFavorite.value
+                        ? StringConst.removeFromFavorites
+                        : StringConst.saveToFavorites,
+                  )),
             ],
           ),
         ),
@@ -97,11 +121,17 @@ class DetailsPageView extends GetView<DetailsPageController> {
           items: [
             [
               ChartGroupPieDataItem(
-                  amount: foodModel.prtn ?? 0, color: ColorConst.blue, label: ''),
+                  amount: foodModel.prtn ?? 0,
+                  color: ColorConst.blue,
+                  label: ''),
               ChartGroupPieDataItem(
-                  amount: foodModel.ft ?? 0, color: ColorConst.orange, label: ''),
+                  amount: foodModel.ft ?? 0,
+                  color: ColorConst.orange,
+                  label: ''),
               ChartGroupPieDataItem(
-                  amount: foodModel.tcrb ?? 0, color: ColorConst.purple, label: '')
+                  amount: foodModel.tcrb ?? 0,
+                  color: ColorConst.purple,
+                  label: '')
             ],
           ],
           settings: const ChartGroupPieSettings(thickness: 9),

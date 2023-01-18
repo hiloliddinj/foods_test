@@ -1,9 +1,12 @@
+import 'package:foods_test/app/data/models/food_model/food_model.dart';
+import 'package:foods_test/app/modules/home_page/controllers/home_page_controller.dart';
 import 'package:get/get.dart';
 
 class DetailsPageController extends GetxController {
-  //TODO: Implement DetailsPageController
+  final HomePageController homePageController = Get.find();
 
-  final count = 0.obs;
+  RxBool isFavorite = false.obs;
+
   // @override
   // void onInit() {
   //   super.onInit();
@@ -19,5 +22,12 @@ class DetailsPageController extends GetxController {
   //   super.onClose();
   // }
 
-  void increment() => count.value++;
+  void updateIsFavorite({required bool isFavorite, FoodModel? foodModel}) {
+    this.isFavorite.value = isFavorite;
+
+    if (foodModel != null) {
+      homePageController.updateHomePage(isFavorite: isFavorite, foodModel: foodModel);
+    }
+
+  }
 }
