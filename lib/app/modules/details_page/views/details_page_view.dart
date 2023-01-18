@@ -69,7 +69,7 @@ class DetailsPageView extends GetView<DetailsPageController> {
               ),
               _createButton(
                 onPressed: () {},
-                title: 'Save to favorites',
+                title: StringConst.saveToFavorites,
               ),
             ],
           ),

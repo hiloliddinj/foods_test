@@ -6,4 +6,7 @@ class StringConst {
   static String protein = 'Protein';
   static String fat = 'Fat';
   static String totalCarbs = 'Total Carbs';
+
+  static String saveToFavorites = 'Save to favorites';
+  static String removeFromFavorites = 'Remove from favorites';
 }
