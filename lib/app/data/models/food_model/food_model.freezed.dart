@@ -282,7 +282,7 @@ class __$$_FoodModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_FoodModel implements _FoodModel {
+class _$_FoodModel extends _FoodModel {
   const _$_FoodModel(
       {required this.clr,
       required this.prtn,
@@ -298,7 +298,8 @@ class _$_FoodModel implements _FoodModel {
       required this.gr,
       required this.nm,
       required this.mmt})
-      : _als = als;
+      : _als = als,
+        super._();
 
   factory _$_FoodModel.fromJson(Map<String, dynamic> json) =>
       _$$_FoodModelFromJson(json);
@@ -340,51 +341,6 @@ class _$_FoodModel implements _FoodModel {
   @override
   final MmtModel? mmt;
 
-  @override
-  String toString() {
-    return 'FoodModel(clr: $clr, prtn: $prtn, ft: $ft, tcrb: $tcrb, sgr: $sgr, gl: $gl, clrj: $clrj, ncrb: $ncrb, als: $als, src: $src, sgm: $sgm, gr: $gr, nm: $nm, mmt: $mmt)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_FoodModel &&
-            (identical(other.clr, clr) || other.clr == clr) &&
-            (identical(other.prtn, prtn) || other.prtn == prtn) &&
-            (identical(other.ft, ft) || other.ft == ft) &&
-            (identical(other.tcrb, tcrb) || other.tcrb == tcrb) &&
-            (identical(other.sgr, sgr) || other.sgr == sgr) &&
-            (identical(other.gl, gl) || other.gl == gl) &&
-            (identical(other.clrj, clrj) || other.clrj == clrj) &&
-            (identical(other.ncrb, ncrb) || other.ncrb == ncrb) &&
-            const DeepCollectionEquality().equals(other._als, _als) &&
-            (identical(other.src, src) || other.src == src) &&
-            (identical(other.sgm, sgm) || other.sgm == sgm) &&
-            (identical(other.gr, gr) || other.gr == gr) &&
-            (identical(other.nm, nm) || other.nm == nm) &&
-            (identical(other.mmt, mmt) || other.mmt == mmt));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      clr,
-      prtn,
-      ft,
-      tcrb,
-      sgr,
-      gl,
-      clrj,
-      ncrb,
-      const DeepCollectionEquality().hash(_als),
-      src,
-      sgm,
-      gr,
-      nm,
-      mmt);
-
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
@@ -399,7 +355,7 @@ class _$_FoodModel implements _FoodModel {
   }
 }
 
-abstract class _FoodModel implements FoodModel {
+abstract class _FoodModel extends FoodModel {
   const factory _FoodModel(
       {required final double? clr,
       required final double? prtn,
@@ -415,6 +371,7 @@ abstract class _FoodModel implements FoodModel {
       required final String? gr,
       required final String? nm,
       required final MmtModel? mmt}) = _$_FoodModel;
+  const _FoodModel._() : super._();
 
   factory _FoodModel.fromJson(Map<String, dynamic> json) =
       _$_FoodModel.fromJson;
@@ -577,13 +534,14 @@ class __$$_MmtModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MmtModel implements _MmtModel {
+class _$_MmtModel extends _MmtModel {
   const _$_MmtModel(
       {required this.u,
       required this.q,
       required this.s,
       required this.g,
-      required this.df});
+      required this.df})
+      : super._();
 
   factory _$_MmtModel.fromJson(Map<String, dynamic> json) =>
       _$$_MmtModelFromJson(json);
@@ -599,27 +557,6 @@ class _$_MmtModel implements _MmtModel {
   @override
   final bool? df;
 
-  @override
-  String toString() {
-    return 'MmtModel(u: $u, q: $q, s: $s, g: $g, df: $df)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_MmtModel &&
-            (identical(other.u, u) || other.u == u) &&
-            (identical(other.q, q) || other.q == q) &&
-            (identical(other.s, s) || other.s == s) &&
-            (identical(other.g, g) || other.g == g) &&
-            (identical(other.df, df) || other.df == df));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, u, q, s, g, df);
-
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
@@ -634,13 +571,14 @@ class _$_MmtModel implements _MmtModel {
   }
 }
 
-abstract class _MmtModel implements MmtModel {
+abstract class _MmtModel extends MmtModel {
   const factory _MmtModel(
       {required final String? u,
       required final double? q,
       required final double? s,
       required final double? g,
       required final bool? df}) = _$_MmtModel;
+  const _MmtModel._() : super._();
 
   factory _MmtModel.fromJson(Map<String, dynamic> json) = _$_MmtModel.fromJson;
 

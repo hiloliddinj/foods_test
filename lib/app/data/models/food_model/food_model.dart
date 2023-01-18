@@ -1,10 +1,14 @@
+import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'food_model.freezed.dart';
 part 'food_model.g.dart';
 
 @Freezed()
-class FoodModel with _$FoodModel {
+class FoodModel extends Equatable with _$FoodModel {
+
+  const FoodModel._();
+
   const factory FoodModel({
     required double? clr,
     required double? prtn,
@@ -24,10 +28,16 @@ class FoodModel with _$FoodModel {
 
   factory FoodModel.fromJson(Map<String, dynamic> json) => _$FoodModelFromJson(json);
 
+  @override
+  List<Object?> get props => [clr, prtn, ft, tcrb, sgr, gl, clrj, ncrb, als, src, sgm, gr, nm, mmt];
+
 }
 
 @Freezed()
-class MmtModel with _$MmtModel {
+class MmtModel extends Equatable with _$MmtModel {
+
+  const MmtModel._();
+
   const factory MmtModel({
     required String? u,
     required double? q,
@@ -37,5 +47,8 @@ class MmtModel with _$MmtModel {
   }) = _MmtModel;
 
   factory MmtModel.fromJson(Map<String, dynamic> json) => _$MmtModelFromJson(json);
+
+  @override
+  List<Object?> get props => [u, q, s, g, df];
 
 }
