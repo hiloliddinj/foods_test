@@ -12,7 +12,7 @@ class SplashPageView extends GetView<SplashPageController> {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = TextStyleHelper.overpass(fontWeight: FontWeight.bold);
+    var textStyle = TextStyleHelper.overpass(fontWeight: FontWeight.bold);
 
     return Scaffold(
       appBar: AppBar(

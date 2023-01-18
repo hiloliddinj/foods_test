@@ -17,9 +17,9 @@ linter:
     use_named_constants: true
     unnecessary_raw_strings: true
     unnecessary_null_checks: true
-    unnecessary_lambdas: true
+    unnecessary_lambdas: false
     unnecessary_final: true
     type_annotate_public_apis: true
     sized_box_shrink_expand: true
     prefer_int_literals: true
-    
+    constant_identifier_names: false

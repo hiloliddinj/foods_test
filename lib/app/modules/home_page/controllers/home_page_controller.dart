@@ -24,7 +24,6 @@ class HomePageController extends GetxController {
 
   Future<void> _getFood() async {
     List<FoodModel>? foodModelList = await ApiRepository().getFoods();
-    print('Response: ${foodModelList?.length}');
 
     if (foodModelList != null) {
       allFoodModelList = foodModelList.toList();
