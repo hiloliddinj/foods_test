@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foods_test/app/aspect/constants/string_const.dart';
 import 'package:foods_test/app/core/helpers/text_style_helper.dart';
 import 'package:foods_test/app/core/helpers/ui_helper.dart';
+import 'package:foods_test/app/data/models/food_model/food_model.dart';
 
 import 'package:get/get.dart';
 import 'package:mrx_charts/mrx_charts.dart';
@@ -14,6 +15,8 @@ class DetailsPageView extends GetView<DetailsPageController> {
 
   @override
   Widget build(BuildContext context) {
+
+    FoodModel foodModel = Get.arguments;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConst.white,
@@ -40,30 +43,30 @@ class DetailsPageView extends GetView<DetailsPageController> {
             children: [
               Column(
                 children: [
-                  _buildTitle(),
-                  _buildChart(),
+                  _buildTitle(foodModel: foodModel),
+                  _buildChart(foodModel: foodModel),
                   _buildSubTitle(),
                   UiHelper.h2(),
-                  _buildTile(title: 'Calories', value: '242 kcal'),
+                  _buildTile(title: StringConst.calories, value: '${foodModel.clr?.toStringAsFixed(1)} ${StringConst.kcal}'),
                   _buildTile(
                       color: ColorConst.blue,
                       title: StringConst.protein,
-                      value: '12 g'),
+                      value: '${foodModel.prtn?.toStringAsFixed(1)} ${StringConst.g}'),
                   _buildTile(
                       color: ColorConst.orange,
                       title: StringConst.fat,
-                      value: '17.4 g'),
+                      value: '${foodModel.ft?.toStringAsFixed(1)} ${StringConst.g}'),
                   _buildTile(
                       color: ColorConst.purple,
                       title: StringConst.totalCarbs,
-                      value: '3g g'),
+                      value: '${foodModel.tcrb?.toStringAsFixed(1)} ${StringConst.g}'),
                   _buildTile(
-                      title: 'Sugar',
-                      value: '8 g',
+                      title: StringConst.sugar,
+                      value: '${foodModel.sgr?.toStringAsFixed(1)} ${StringConst.g}',
                       valueColor: ColorConst.grey2),
                   _buildTile(
-                      title: 'Glycemic Load',
-                      value: '14',
+                      title: StringConst.glycemicLoad,
+                      value: '${foodModel.gl?.toStringAsFixed(1)} ${StringConst.g}',
                       valueColor: ColorConst.grey2),
                 ],
               ),
@@ -78,29 +81,29 @@ class DetailsPageView extends GetView<DetailsPageController> {
     );
   }
 
-  Widget _buildTitle() {
+  Widget _buildTitle({required FoodModel foodModel}) {
     return Align(
       alignment: Alignment.centerLeft,
       child: Text(
-        'Mozzarella cheese mini',
+        foodModel.nm ?? '',
         style:
             TextStyleHelper.overpass(fontSize: 25, fontWeight: FontWeight.bold),
       ),
     );
   }
 
-  Widget _buildChart() {
+  Widget _buildChart({required FoodModel foodModel}) {
     List<ChartLayer> layers() {
       return [
         ChartGroupPieLayer(
           items: [
             [
               ChartGroupPieDataItem(
-                  amount: 4, color: ColorConst.blue, label: ''),
+                  amount: foodModel.prtn ?? 0, color: ColorConst.blue, label: ''),
               ChartGroupPieDataItem(
-                  amount: 4, color: ColorConst.orange, label: ''),
+                  amount: foodModel.ft ?? 0, color: ColorConst.orange, label: ''),
               ChartGroupPieDataItem(
-                  amount: 1, color: ColorConst.purple, label: '')
+                  amount: foodModel.tcrb ?? 0, color: ColorConst.purple, label: '')
             ],
           ],
           settings: const ChartGroupPieSettings(thickness: 9),
@@ -129,7 +132,7 @@ class DetailsPageView extends GetView<DetailsPageController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      '242',
+                      '${foodModel.clr?.toStringAsFixed(1)}',
                       style: TextStyleHelper.overpass(
                         fontSize: 35,
                         fontWeight: FontWeight.bold,
@@ -137,7 +140,7 @@ class DetailsPageView extends GetView<DetailsPageController> {
                     ),
                     UiHelper.h1(),
                     Text(
-                      'kcal',
+                      StringConst.kcal,
                       style: TextStyleHelper.overpass(
                         fontSize: 22,
                       ),
@@ -156,7 +159,7 @@ class DetailsPageView extends GetView<DetailsPageController> {
     return Align(
       alignment: Alignment.centerLeft,
       child: Text(
-        'Nutrition facts',
+        StringConst.nutritionFacts,
         style: TextStyleHelper.overpass(
           fontSize: 23,
         ),

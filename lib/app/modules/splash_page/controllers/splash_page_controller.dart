@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class SplashPageController extends GetxController {
   Timer? _timer;
-  final count = 1.obs;
+  final count = 5.obs;
 
   Response? response;
 
