@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:foods_test/app/modules/home_page/views/home_page_view.dart';
+import 'package:foods_test/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class SplashPageController extends GetxController {
   Timer? _timer;
-  final count = 5.obs;
+  final count = 2.obs;
 
   @override
   void onInit() {
@@ -26,7 +26,9 @@ class SplashPageController extends GetxController {
       (Timer timer) {
         if (count.value == 0) {
           timer.cancel();
-          Get.off(() => const HomePageView());
+          Get.offNamed(Routes.HOME_PAGE);
+          //Get.off(() => const HomePageView());
+          //Get.off(const HomePageView(), routeName: Routes.SPLASH_PAGE);
         } else {
           count.value--;
         }

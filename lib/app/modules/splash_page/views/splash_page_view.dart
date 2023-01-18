@@ -4,6 +4,7 @@ import 'package:foods_test/app/core/helpers/text_style_helper.dart';
 import 'package:foods_test/app/core/helpers/ui_helper.dart';
 
 import 'package:get/get.dart';
+import '../../../aspect/constants/color_const.dart';
 import '../controllers/splash_page_controller.dart';
 
 class SplashPageView extends GetView<SplashPageController> {
@@ -15,12 +16,12 @@ class SplashPageView extends GetView<SplashPageController> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: ColorConst.white,
         elevation: 0,
       ),
       body: SafeArea(
         child: Container(
-          color: Colors.white,
+          color: ColorConst.white,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
