@@ -11,10 +11,12 @@ import '../../../routes/app_pages.dart';
 class FoodButtonView extends GetView {
   const FoodButtonView({
     required this.foodModel,
+    required this.isFavorite,
     Key? key,
   }) : super(key: key);
 
   final FoodModel foodModel;
+  final bool isFavorite;
 
   @override
   Widget build(BuildContext context) {

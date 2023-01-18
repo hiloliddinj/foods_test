@@ -6,7 +6,7 @@ class SplashPageBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<SplashPageController>(
-      () => SplashPageController(),
+      SplashPageController.new,
     );
   }
 }

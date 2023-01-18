@@ -6,7 +6,7 @@ class HomePageBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<HomePageController>(
-      () => HomePageController(),
+      HomePageController.new,
     );
   }
 }

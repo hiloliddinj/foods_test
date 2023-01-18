@@ -11,7 +11,7 @@ class ApiRepository {
 
 
   Future _init() async {
-    final dio = Dio();
+    var dio = Dio();
     dio.options = BaseOptions(validateStatus: (val) => true);
     dio.options.connectTimeout = 5000;
     dio.options.receiveTimeout = 10000;

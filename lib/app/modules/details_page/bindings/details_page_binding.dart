@@ -6,7 +6,7 @@ class DetailsPageBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<DetailsPageController>(
-      () => DetailsPageController(),
+      DetailsPageController.new,
     );
   }
 }

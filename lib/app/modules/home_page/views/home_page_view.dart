@@ -21,7 +21,7 @@ class HomePageView extends GetView<HomePageController> {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Container(
+        child: ColoredBox(
           color: ColorConst.white,
           child: Center(
             child: Column(
@@ -70,7 +70,7 @@ class HomePageView extends GetView<HomePageController> {
       style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0))),
+                  borderRadius: BorderRadius.circular(18))),
           backgroundColor: MaterialStateProperty.all<Color>(
               isActive ? ColorConst.green : ColorConst.grey)),
       child: SizedBox(
@@ -92,9 +92,9 @@ class HomePageView extends GetView<HomePageController> {
       child: Obx(() => ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: controller.myList.length,
+            itemCount: controller.allFoodButtonViewList.length,
             itemBuilder: (BuildContext context, int index) {
-              return controller.myList[index];
+              return controller.allFoodButtonViewList[index];
             },
           )),
     );

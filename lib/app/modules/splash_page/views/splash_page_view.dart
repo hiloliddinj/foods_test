@@ -20,7 +20,7 @@ class SplashPageView extends GetView<SplashPageController> {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Container(
+        child: ColoredBox(
           color: ColorConst.white,
           child: Center(
             child: Column(

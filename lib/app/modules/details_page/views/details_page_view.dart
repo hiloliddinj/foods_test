@@ -22,9 +22,7 @@ class DetailsPageView extends GetView<DetailsPageController> {
         backgroundColor: ColorConst.white,
         elevation: 0,
         leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
+            onPressed: Get.back,
             icon: const Padding(
               padding: EdgeInsets.only(left: 20),
               child: Icon(
@@ -221,7 +219,7 @@ class DetailsPageView extends GetView<DetailsPageController> {
           style: ButtonStyle(
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0))),
+                      borderRadius: BorderRadius.circular(20))),
               backgroundColor:
                   MaterialStateProperty.all<Color>(ColorConst.green)),
           child: SizedBox(
