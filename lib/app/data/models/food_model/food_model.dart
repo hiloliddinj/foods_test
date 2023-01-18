@@ -6,7 +6,6 @@ part 'food_model.g.dart';
 
 @Freezed()
 class FoodModel extends Equatable with _$FoodModel {
-
   const FoodModel._();
 
   const factory FoodModel({
@@ -24,18 +23,18 @@ class FoodModel extends Equatable with _$FoodModel {
     required String? gr,
     required String? nm,
     required MmtModel? mmt,
-}) = _FoodModel;
+  }) = _FoodModel;
 
-  factory FoodModel.fromJson(Map<String, dynamic> json) => _$FoodModelFromJson(json);
+  factory FoodModel.fromJson(Map<String, dynamic> json) =>
+      _$FoodModelFromJson(json);
 
   @override
-  List<Object?> get props => [clr, prtn, ft, tcrb, sgr, gl, clrj, ncrb, als, src, sgm, gr, nm, mmt];
-
+  List<Object?> get props =>
+      [clr, prtn, ft, tcrb, sgr, gl, clrj, ncrb, als, src, sgm, gr, nm, mmt];
 }
 
 @Freezed()
 class MmtModel extends Equatable with _$MmtModel {
-
   const MmtModel._();
 
   const factory MmtModel({
@@ -46,9 +45,9 @@ class MmtModel extends Equatable with _$MmtModel {
     required bool? df,
   }) = _MmtModel;
 
-  factory MmtModel.fromJson(Map<String, dynamic> json) => _$MmtModelFromJson(json);
+  factory MmtModel.fromJson(Map<String, dynamic> json) =>
+      _$MmtModelFromJson(json);
 
   @override
   List<Object?> get props => [u, q, s, g, df];
-
 }
