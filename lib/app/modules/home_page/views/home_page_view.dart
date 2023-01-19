@@ -60,25 +60,28 @@ class HomePageView extends GetView<HomePageController> {
     );
   }
 
-  ElevatedButton _createButton({
+  Widget _createButton({
     required void Function()? onPressed,
     required String title,
     required bool isActive,
   }) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
-          backgroundColor: MaterialStateProperty.all<Color>(
-              isActive ? ColorConst.green : ColorConst.grey)),
-      child: SizedBox(
-        width: 100,
-        child: Center(
-          child: Text(
-            title,
-            style:
-                TextStyleHelper.overpass(fontSize: 20, color: ColorConst.white),
+    return SizedBox(
+      height: 40,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
+            backgroundColor: MaterialStateProperty.all<Color>(
+                isActive ? ColorConst.green : ColorConst.grey)),
+        child: SizedBox(
+          width: 110,
+          child: Center(
+            child: Text(
+              title,
+              style:
+                  TextStyleHelper.overpass(fontSize: 20, color: ColorConst.white),
+            ),
           ),
         ),
       ),

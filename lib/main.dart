@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    print('Main, appState: $state');
+    debugPrint('Main, appState: $state');
     if (state == AppLifecycleState.paused) {
       NotificationHelper.createSimpleNotification(
           title: 'Hello',
