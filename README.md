@@ -1,16 +1,18 @@
-# foods_test
+# Demo App Foods Test
 
-A new Flutter project.
+Used techs:
+GetX - State Management and navigations
+get_cli - Created project, screen, some views
+get_storage - local storage
+awesome_notification - for local notifications
+freezed - to create models
+retrofit - to create rest clients
+dio - api calls
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Demonstration:
 
-A few resources to get you started if this is your first Flutter project:
+![Simulator Screen Recording - iPhone 14 Pro Max - 2023-01-19 at 13 11 07](https://user-images.githubusercontent.com/38894285/213389700-a843c421-3f1c-4317-a7df-aa70dec2f07a.gif)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
