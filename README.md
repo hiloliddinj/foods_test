@@ -1,13 +1,13 @@
-# Demo App Foods Test
+## Demo App Foods Test
 
-Used techs:
-GetX - State Management and navigations
-get_cli - Created project, screen, some views
-get_storage - local storage
-awesome_notification - for local notifications
-freezed - to create models
-retrofit - to create rest clients
-dio - api calls
+## Used techs:
+# GetX - State Management and navigations
+# get_cli - Created project, screen, some views
+# get_storage - local storage
+# awesome_notification - for local notifications
+# freezed - to create models
+# retrofit - to create rest clients
+# dio - api calls
 
 
 ## Demonstration:
