@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foods_test/app/aspect/constants/color_const.dart';
 import 'package:foods_test/app/aspect/constants/string_const.dart';
-import 'package:foods_test/app/core/helpers/text_style_helper.dart';
 import 'package:foods_test/app/core/helpers/ui_helper.dart';
+import 'package:foods_test/app/modules/home_page/views/widgets/custom_button_view.dart';
 
 import 'package:get/get.dart';
 
@@ -43,48 +43,20 @@ class HomePageView extends GetView<HomePageController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _createButton(
+        CustomButtonView(
             onPressed: () {
               controller.updateIsHome(isHome: true);
             },
             title: StringConst.home,
             isActive: isHome),
         UiHelper.w2(),
-        _createButton(
+        CustomButtonView(
             onPressed: () {
               controller.updateIsHome(isHome: false);
             },
             title: StringConst.favourites,
             isActive: !isHome),
       ],
-    );
-  }
-
-  Widget _createButton({
-    required void Function()? onPressed,
-    required String title,
-    required bool isActive,
-  }) {
-    return SizedBox(
-      height: 40,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
-            backgroundColor: MaterialStateProperty.all<Color>(
-                isActive ? ColorConst.green : ColorConst.grey)),
-        child: SizedBox(
-          width: 110,
-          child: Center(
-            child: Text(
-              title,
-              style:
-                  TextStyleHelper.overpass(fontSize: 20, color: ColorConst.white),
-            ),
-          ),
-        ),
-      ),
     );
   }
 

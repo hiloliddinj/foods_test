@@ -3,7 +3,7 @@ import 'package:foods_test/app/data/models/food_model/food_model.dart';
 import 'package:get/get.dart';
 
 import '../../../core/repositories/api_repository.dart';
-import '../views/food_button_view.dart';
+import '../views/widgets/food_button_view.dart';
 
 class HomePageController extends GetxController {
 

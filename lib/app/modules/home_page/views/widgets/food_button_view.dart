@@ -6,7 +6,7 @@ import 'package:foods_test/app/data/models/food_model/food_model.dart';
 
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
+import '../../../../routes/app_pages.dart';
 
 class FoodButtonView extends GetView {
   const FoodButtonView({
